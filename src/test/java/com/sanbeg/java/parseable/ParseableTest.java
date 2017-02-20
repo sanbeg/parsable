@@ -81,4 +81,10 @@ public class ParseableTest {
         subject.setPosition(0);
         assertTrue(subject.match(reA));
     }
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void badPosition() {
+        Parseable subject = new Parseable("ab");
+        subject.setPosition(3);
+    }
 }
