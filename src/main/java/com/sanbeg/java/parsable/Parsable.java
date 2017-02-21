@@ -86,9 +86,8 @@ public class Parsable {
     }
 
     /**
-     * Returns the position where the last match or find left off.  A failed search doesn not reset
+     * Returns the position where the last match or find left off.  A failed search does not reset
      * the position.
-     *
      * @return position
      */
     public int position() {
