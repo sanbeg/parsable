@@ -1,4 +1,4 @@
-package com.sanbeg.java.parseable;
+package com.sanbeg.java.parsable;
 
 import org.junit.Test;
 
@@ -11,7 +11,7 @@ import static org.junit.Assert.*;
 /**
  * Created by steve on 2/19/17.
  */
-public class ParseableTest {
+public class ParsableTest {
 
 
     private final Pattern reA = Pattern.compile("a");
@@ -19,7 +19,7 @@ public class ParseableTest {
 
     @Test
     public void noReset() {
-        Parseable subject = new Parseable("ab");
+        Parsable subject = new Parsable("ab");
 
         assertTrue(subject.match(reA));
         assertFalse(subject.match(reA));
@@ -28,7 +28,7 @@ public class ParseableTest {
 
     @Test
     public void reset() throws Exception {
-        Parseable subject = new Parseable("ab");
+        Parsable subject = new Parsable("ab");
 
         assertTrue(subject.match(reA));
         assertFalse(subject.match(reA));
@@ -38,20 +38,20 @@ public class ParseableTest {
 
     @Test
     public void resetString() throws Exception {
-        Parseable subject = new Parseable("ab");
+        Parsable subject = new Parsable("ab");
         subject.reset("ba");
         assertTrue(subject.match(reB));
     }
 
     @Test
     public void find() throws Exception {
-        Parseable subject = new Parseable("ab");
+        Parsable subject = new Parsable("ab");
         assertTrue(subject.find(reB));
     }
 
     @Test
     public void match() throws Exception {
-        Parseable subject = new Parseable("ab");
+        Parsable subject = new Parsable("ab");
         assertFalse(subject.match(reB));
         assertTrue(subject.match(reA));
         assertTrue(subject.match(reB));
@@ -59,7 +59,7 @@ public class ParseableTest {
 
     @Test
     public void group() throws Exception {
-        Parseable subject = new Parseable("a1b");
+        Parsable subject = new Parsable("a1b");
         Pattern re = Pattern.compile("\\d");
         assertTrue(subject.find(re));
         assertEquals("1", subject.group());
@@ -67,7 +67,7 @@ public class ParseableTest {
 
     @Test
     public void result() throws Exception {
-        Parseable subject = new Parseable("a1b");
+        Parsable subject = new Parsable("a1b");
         Pattern re = Pattern.compile("\\d");
         assertTrue(subject.find(re));
         assertEquals("1", subject.result().group());
@@ -75,7 +75,7 @@ public class ParseableTest {
 
     @Test
     public void position() throws Exception {
-        Parseable subject = new Parseable("abcd");
+        Parsable subject = new Parsable("abcd");
         assertTrue(subject.match(reA));
         assertEquals(1, subject.position());
         assertTrue(subject.match(reB));
@@ -86,7 +86,7 @@ public class ParseableTest {
 
     @Test(expected = IndexOutOfBoundsException.class)
     public void badPosition() {
-        Parseable subject = new Parseable("ab");
+        Parsable subject = new Parsable("ab");
         subject.setPosition(3);
     }
 
@@ -95,7 +95,7 @@ public class ParseableTest {
         Pattern op  = Pattern.compile("[-+*]");
         Pattern sp  = Pattern.compile("\\s+");
 
-        Parseable text = new Parseable(equation);
+        Parsable text = new Parsable(equation);
         List<String> tok = new ArrayList<String>();
 
         while (text.position() < equation.length()) {

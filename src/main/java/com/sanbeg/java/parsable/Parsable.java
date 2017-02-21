@@ -1,4 +1,4 @@
-package com.sanbeg.java.parseable;
+package com.sanbeg.java.parsable;
 
 import java.util.regex.MatchResult;
 import java.util.regex.Matcher;
@@ -8,16 +8,16 @@ import java.util.regex.Pattern;
  * A simple paradigm for parsing text with regular expressions, inspired by Perl
  * regular expression parsing.
  */
-public class Parseable {
+public class Parsable {
     private final Matcher matcher;
     private int pos = 0;
     private int length;
 
     /**
-     * Create an new Parseable, initialised to parse the specified text.
+     * Create a new Parsable, initialised to parse the specified text.
      * @param text the text to parse
      */
-    public Parseable(CharSequence text) {
+    public Parsable(CharSequence text) {
         length = text.length();
         matcher = Pattern
                 .compile("")
