@@ -2,6 +2,8 @@ package com.sanbeg.java.parseable;
 
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Pattern;
 
 import static org.junit.Assert.*;
@@ -86,5 +88,35 @@ public class ParseableTest {
     public void badPosition() {
         Parseable subject = new Parseable("ab");
         subject.setPosition(3);
+    }
+
+    private String [] parseEquation(String equation) {
+        Pattern num = Pattern.compile("\\d+");
+        Pattern op  = Pattern.compile("[-+*]");
+        Pattern sp  = Pattern.compile("\\s+");
+
+        Parseable text = new Parseable(equation);
+        List<String> tok = new ArrayList<String>();
+
+        while (text.position() < equation.length()) {
+            if (text.match(num) || text.match(op)) {
+                tok.add(text.group());
+                continue;
+            }
+            if (text.match(sp)) {
+                continue; //eat spaces
+            }
+            //Nothing matched - something must be wrong here!
+            throw new RuntimeException("Invalid char at position " + text.position());
+        }
+        return tok.toArray(new String[tok.size()]);
+    }
+
+    @Test
+    public void equation() {
+        String eq = "1 + 2*3";
+        String [] expect = {"1", "+", "2", "*", "3"};
+
+        assertArrayEquals(expect, parseEquation(eq));
     }
 }
