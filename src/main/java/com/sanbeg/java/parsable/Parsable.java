@@ -77,6 +77,10 @@ public class Parsable {
         return takeMatch(matcher.usePattern(p).lookingAt());
     }
 
+    /**
+     * Retrieve the text that was matched by the last search.
+     * @return the text
+     */
     public String group() {
         return matcher.group();
     }
